@@ -1,0 +1,35 @@
+name: Demo Run of GitHub Actions
+
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches: 
+      - master
+      
+env:
+    DOTNET_VERSION: '5.0.x'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+    environment: dev
+
+    steps:
+    # Checkout the repo
+    - uses: actions/checkout@v3
+    
+    # Setup .Net Core SDK
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    # Run dotnet build and test
+    - name: dotnet build and test
+      run: |
+        dotnet restore
+        dotnet build --no-restore
+        dotnet test --no-build --verbosity normal

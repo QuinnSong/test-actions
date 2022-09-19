@@ -1,4 +1,4 @@
-name: .NET
+name: mac flow
 
 on:
   workflow_dispatch:

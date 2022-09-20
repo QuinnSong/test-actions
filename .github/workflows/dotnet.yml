@@ -25,6 +25,11 @@ jobs:
             wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.4.0/selenium-server-4.4.0.jar -P /usr/local/opt/selenium4
           fi
           ls -ltr /usr/local/opt/selenium4
+      - name: Setup Chrome driver
+        run: |
+          brew install cask chromedriver
+          chromedriver --version
+          echo $PATH
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@latest
       - run: |

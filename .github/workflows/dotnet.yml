@@ -29,6 +29,7 @@ jobs:
         run: |
           sudo apt update
           #yes | sudo apt install maven
+          chrome --version
           git --version
           java --version
           export JAVA_HOME=/usr/local/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.16-101/x64

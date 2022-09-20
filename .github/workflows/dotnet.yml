@@ -51,14 +51,14 @@ jobs:
           
           # check chrome version
           /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version
-          #chrome --version
-      - name: Setup Chrome driver
+
+      - name: Setup Chrome driver ( Already installed)
         run: |
-          brew install cask chromedriver
+          #brew install cask chromedriver
           chromedriver --version
-          echo $PATH
-          export PATH=$PATH:/Users/myname/Documents/WebDriver
-          echo $PATH
+          #echo $PATH
+          #export PATH=$PATH:/Users/myname/Documents/WebDriver
+          #echo $PATH
       - name: Setup Chrome
         #uses: browser-actions/setup-chrome@latest
         run: |

@@ -25,6 +25,26 @@ jobs:
             wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.4.0/selenium-server-4.4.0.jar -P /usr/local/opt/selenium4
           fi
           ls -ltr /usr/local/opt/selenium4
+      - name: Setup Chrome browser
+        run: |
+          # Changed the installer from .dmg to .pkg and took out the bit for choosing an architecture.
+          # make temp folder for downloads
+          mkdir "/tmp/googlechrome"
+
+          # change working directory
+          cd "/tmp/googlechrome"
+
+          # Download Google Chrome 
+          curl -L -o "/tmp/googlechrome/googlechrome.pkg" "https://dl.google.com/chrome/mac/stable/accept_tos%3Dhttps%253A%252F%252Fwww.google.com%252Fintl%252Fen_ph%252Fchrome%252Fterms%252F%26_and_accept_tos%3Dhttps%253A%252F%252Fpolicies.google.com%252Fterms/googlechrome.pkg"
+
+          # Install Google Chrome
+          sudo /usr/sbin/installer -pkg googlechrome.pkg -target /
+
+          #Tidy Up
+          sudo rm -rf "/tmp/googlechrome"
+
+          #Bless Google Chrome app
+          xattr -rc "/Applications/Google Chrome.app"
       - name: Setup Chrome driver
         run: |
           brew install cask chromedriver
@@ -35,9 +55,9 @@ jobs:
       - name: Setup Chrome
         #uses: browser-actions/setup-chrome@latest
         run: |
-          export DISPLAY=:99
-          chromedriver --url-base=/wd/hub &
-          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
+          #export DISPLAY=:99
+          #chromedriver --url-base=/wd/hub &
+          #sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
       - name: Setup JAVA HOME 
         run: |
           export JAVA_HOME=$(/usr/libexec/java_home)

@@ -30,9 +30,11 @@ jobs:
           brew install cask chromedriver
           chromedriver --version
           echo $PATH
+          export PATH=$PATH:/Users/myname/Documents/WebDriver
+          echo $PATH
       - name: Setup Chrome
-        uses: browser-actions/setup-chrome@latest
-      - run: |
+        #uses: browser-actions/setup-chrome@latest
+        run: |
           export DISPLAY=:99
           chromedriver --url-base=/wd/hub &
           sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional

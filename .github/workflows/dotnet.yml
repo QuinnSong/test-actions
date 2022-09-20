@@ -27,10 +27,12 @@ jobs:
           ls -ltr /usr/local/opt/selenium4
       - name: Setup JAVA HOME 
         run: |
+          export JAVA_HOME=$(/usr/libexec/java_home)
+          echo $JAVA_HOME
           sudo apt update
           #yes | sudo apt install maven
           chrome --version
           git --version
-          java --version
+          #java --version
           #export JAVA_HOME=/usr/local/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.16-101/x64
           printenv

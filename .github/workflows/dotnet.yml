@@ -11,16 +11,18 @@ jobs:
   build:
 
     runs-on: macos-12
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    #- name: Build
-    #  run: dotnet build --no-restore
-    #- name: Test
-    #  run: dotnet test --no-build --verbosity normal
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Prep selenium folder
+        run: |
+          if [ ! -d "/usr/local/opt/selenium4" ]; then mkdir /usr/local/opt/selenium4; fi
+          if [ ! -f "/opt/selenium4/selenium-server-4.4.0.jar" ]; then
+            wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.4.0/selenium-server-4.4.0.jar -P /usr/local/opt/selenium4
+          fi
+          ls -ltr /usr/local/opt/selenium4
+

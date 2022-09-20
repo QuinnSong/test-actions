@@ -45,6 +45,10 @@ jobs:
 
           #Bless Google Chrome app
           xattr -rc "/Applications/Google Chrome.app"
+          
+          # check chrome version
+          /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version
+          #chrome --version
       - name: Setup Chrome driver
         run: |
           brew install cask chromedriver

@@ -25,4 +25,11 @@ jobs:
             wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.4.0/selenium-server-4.4.0.jar -P /usr/local/opt/selenium4
           fi
           ls -ltr /usr/local/opt/selenium4
-
+      - name: Setup JAVA HOME 
+        run: |
+          sudo apt update
+          #yes | sudo apt install maven
+          git --version
+          java --version
+          export JAVA_HOME=/usr/local/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.16-101/x64
+          printenv

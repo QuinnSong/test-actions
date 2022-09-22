@@ -14,6 +14,7 @@ jobs:
     steps:
       - name: Print Env
         run: |
+          java -version
           printenv
           ls -ltr /usr/local/Caskroom/chromedriver/105.0.5195.52/
         
